@@ -1,0 +1,86 @@
+/* App.css */
+
+/* Custom styles for the video call section */
+.video-call-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-call-timer {
+  background-color: rgba(255, 0, 0, 0.8); /* Semi-transparent red */
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.video-call-controls {
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* Custom styles for the chat box */
+.chat-box-container {
+  background-color: #f9fafb; /* Light gray background */
+  border: 1px solid #e5e7eb; /* Light border */
+}
+
+.chat-box-messages {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 #f9fafb; /* Custom scrollbar */
+}
+
+.chat-box-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-box-messages::-webkit-scrollbar-thumb {
+  background-color: #cbd5e0; /* Scrollbar thumb color */
+  border-radius: 3px;
+}
+
+.chat-box-input {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  transition: border-color 0.2s;
+}
+
+.chat-box-input:focus {
+  border-color: #3b82f6; /* Blue border on focus */
+  outline: none;
+}
+
+/* Custom styles for the participants section */
+.participants-container {
+  background-color: #f9fafb; /* Light gray background */
+  border: 1px solid #e5e7eb; /* Light border */
+}
+
+.participants-stats {
+  color: #4b5563; /* Gray text */
+}
+
+.add-user-button {
+  background-color: #3b82f6; /* Blue background */
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.add-user-button:hover {
+  background-color: #2563eb; /* Darker blue on hover */
+}
+
+/* Global styles */
+body {
+  font-family: 'Inter', sans-serif; /* Use Inter font */
+  background-color: #f3f4f6; /* Light gray background for the page */
+}
+
+/* Ensure the grid layout is responsive */
+@media (max-width: 768px) {
+  .meeting-dashboard {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+}
