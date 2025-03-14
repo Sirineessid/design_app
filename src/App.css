@@ -1,86 +1,104 @@
 /* App.css */
 
-/* Custom styles for the video call section */
-.video-call-container {
-  position: relative;
-  overflow: hidden;
-}
+/* Import Tailwind's base, components, and utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.video-call-timer {
-  background-color: rgba(255, 0, 0, 0.8); /* Semi-transparent red */
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-
-.video-call-controls {
-  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
-  padding: 8px;
-  border-radius: 8px;
-}
-
-/* Custom styles for the chat box */
-.chat-box-container {
-  background-color: #f9fafb; /* Light gray background */
-  border: 1px solid #e5e7eb; /* Light border */
-}
-
-.chat-box-messages {
-  scrollbar-width: thin;
-  scrollbar-color: #cbd5e0 #f9fafb; /* Custom scrollbar */
-}
-
-.chat-box-messages::-webkit-scrollbar {
-  width: 6px;
-}
-
-.chat-box-messages::-webkit-scrollbar-thumb {
-  background-color: #cbd5e0; /* Scrollbar thumb color */
-  border-radius: 3px;
-}
-
-.chat-box-input {
-  background-color: white;
-  border: 1px solid #e5e7eb;
-  transition: border-color 0.2s;
-}
-
-.chat-box-input:focus {
-  border-color: #3b82f6; /* Blue border on focus */
-  outline: none;
-}
-
-/* Custom styles for the participants section */
-.participants-container {
-  background-color: #f9fafb; /* Light gray background */
-  border: 1px solid #e5e7eb; /* Light border */
-}
-
-.participants-stats {
-  color: #4b5563; /* Gray text */
-}
-
-.add-user-button {
-  background-color: #3b82f6; /* Blue background */
-  color: white;
-  transition: background-color 0.2s;
-}
-
-.add-user-button:hover {
-  background-color: #2563eb; /* Darker blue on hover */
-}
-
-/* Global styles */
+/* Global Styles */
 body {
-  font-family: 'Inter', sans-serif; /* Use Inter font */
-  background-color: #f3f4f6; /* Light gray background for the page */
+  @apply bg-gray-100 text-gray-900 font-sans;
 }
 
-/* Ensure the grid layout is responsive */
-@media (max-width: 768px) {
-  .meeting-dashboard {
-    grid-template-columns: 1fr; /* Single column on small screens */
+/* Meeting Dashboard Layout */
+.meeting-dashboard {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6 p-6;
+}
+
+/* Card Component Style */
+.card {
+  @apply bg-white shadow rounded-lg p-4;
+}
+
+/* Video Call Component Styles */
+.video-call {
+  @apply relative;
+}
+
+/* Style for the video element */
+.video-call video {
+  @apply w-full h-[300px] bg-gray-900 rounded-xl;
+}
+
+/* Video call timer:
+   Positioned at the top-left corner with a red background, monospaced font, and subtle shadow for clarity. */
+.video-call .timer {
+  @apply absolute top-2 left-2 bg-red-500 text-white px-3 py-1 rounded-md font-mono text-sm;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Video call controls:
+   Positioned at the bottom-center with spacing between control buttons. */
+.video-call .controls {
+  @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4;
+}
+.video-call .controls button {
+  @apply p-2 rounded-full bg-white shadow hover:bg-gray-100 transition-colors duration-200;
+}
+
+/* Media controls:
+   Additional controls such as volume, mute, fullscreen, etc. Positioned just above the call controls. */
+.media-controls {
+  @apply absolute bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-4;
+}
+.media-controls button {
+  @apply p-2 rounded-full bg-white shadow hover:bg-gray-100 transition-colors duration-200;
+}
+
+/* Chat Box Component Styles */
+.chat-box {
+  @apply flex flex-col h-[400px];
+}
+.chat-box .messages {
+  @apply flex-1 overflow-y-auto mb-2;
+}
+
+/* Chat controls:
+   The container for the chat input and send button. */
+.chat-controls {
+  @apply flex;
+}
+
+/* Styling for the chat input field */
+.chat-controls input {
+  @apply border p-2 flex-grow rounded-l-lg;
+}
+
+/* Styling for the chat send button */
+.chat-controls button {
+  @apply px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 transition-colors duration-200;
+}
+
+/* Participants Panel Styles */
+.participants {
+  @apply p-4;
+}
+.participants h3 {
+  @apply text-lg font-bold mb-2;
+}
+.participants .stats {
+  @apply flex justify-between mb-4;
+}
+
+/* Optional Button Base Style (if needed in addition to your Button.tsx component) */
+.btn {
+  @apply px-4 py-2 rounded transition-colors duration-200;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a202c;
+    color: #f7fafc;
   }
 }
