@@ -1,45 +1,54 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
-import { forwardRef } from "react";
+// Button.tsx
+import React from 'react';
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-      },
-      size: {
-        default: "h-10 py-2 px-4",
-        sm: "h-9 px-3 rounded-md",
-        lg: "h-11 px-8 rounded-md",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
+export type ButtonProps = {
+  // Optional text label for the button.
+  label?: string;
+  // Function to be called when the button is clicked.
+  onClick?: () => void;
+  // Optional extra CSS classes.
+  className?: string;
+  // Button variant for styling purposes.
+  variant?: 'primary' | 'secondary' | 'destructive';
+  // Any children passed into the button (e.g., an icon).
+  children?: React.ReactNode;
+};
+
+const Button: React.FC<ButtonProps> = ({
+  label,
+  onClick,
+  className = '',
+  variant = 'primary',
+  children,
+}) => {
+  // Base classes for every button.
+  const baseClasses =
+    'px-4 py-2 rounded focus:outline-none transition-colors duration-200 ';
+
+  // Set variant-specific classes.
+  let variantClasses = '';
+  switch (variant) {
+    case 'primary':
+      variantClasses = 'bg-blue-500 text-white hover:bg-blue-600';
+      break;
+    case 'secondary':
+      variantClasses = 'bg-gray-500 text-white hover:bg-gray-600';
+      break;
+    case 'destructive':
+      variantClasses = 'bg-red-500 text-white hover:bg-red-600';
+      break;
+    default:
+      variantClasses = 'bg-blue-500 text-white hover:bg-blue-600';
   }
-);
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+  // Combine all classes.
+  const combinedClasses = `${baseClasses} ${variantClasses} ${className}`;
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
-    return (
-      <button
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
+  return (
+    <button onClick={onClick} className={combinedClasses}>
+      {children || label}
+    </button>
+  );
+};
 
-Button.displayName = "Button";
-
-export { Button, buttonVariants };
+export default Button;
