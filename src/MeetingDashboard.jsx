@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Card } from "../components/ui/Card";
-import { Button } from "../components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 import { Video, MessageSquare, Users, PhoneCall, Plus } from "lucide-react";
 
 const VideoCall = () => {
